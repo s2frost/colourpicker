@@ -8,21 +8,27 @@ CTRL+SHIFT+F -- Reformats text in HTML Editor
 <!DOCTYPE html>
 <html>
 <head>
-<script data-main="scripts/main" src="scripts/Require.js/require.js"></script>
+<script data-main="js/main" src="js/lib/require.js"></script>
 <meta charset="ISO-8859-1">
 <title>Colour Picker</title>
 </head>
-<body onload="">
-	<h1>Colour Picker</h1>
-	<h2>Picker Appears Here</h2>
-	<p>Todo:
-	<ul>Colour Wheel
-	</ul>
-	<ul>Viewmodel and Knockout Base Sliders
-	</ul>
-	<ul></ul>
-	</p>
-	<p></p>
-	<canvas id="colourWheel"></canvas>
+<body>
+	<div>
+		<h1>Colour Picker</h1>
+
+		<div>
+			<h2>Picker Appears Here</h2>
+			<canvas id="colourWheel" width="100" height="100"></canvas>
+		</div>
+
+		<div>
+			<h2>ToDo:</h2>
+			<p>The follwing items remain:</p>
+			<ul>
+				<li>Colour Wheel</li>
+				<li>Viewmodel and Knockout Base Sliders</li>
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
