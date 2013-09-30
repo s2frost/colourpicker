@@ -1,6 +1,0 @@
-/**
- * Javascript Picker
- */
-(function(){
-	alert("");	
-})();
