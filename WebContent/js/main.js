@@ -3,33 +3,33 @@
  * 
  */
 (function() {
-	
-	var log = function(msg){console.log(msg);};
-	
+
+	var log = function(msg) {
+		console.log(msg);
+	};
+
 	log("app.js started");
 
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	// RequireJS Config
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	require.config({
-		paths: {
-			jquery: 'lib/jquery',
-			knockout: 'lib/knockout'
+		paths : {
+			jquery : 'lib/jquery',
+			knockout : 'lib/knockout',
+			domReady : 'lib/domReady'
 		}
 	});
 
-	
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	// Invoice RequireJS to load ColourPickerViewModel
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	require(['app'], function(app) {
+	require([ 'app/Application', 'domReady!' ],
+			function(Application, document) {
 
-		log("Dependencies loaded.");
+				var app = Application.getInstance(document);
+				app.run();
 
-		debugger;
-		
-		app.initialize();
-
-	});
+			});
 
 }());
