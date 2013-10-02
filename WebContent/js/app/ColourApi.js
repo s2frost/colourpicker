@@ -1,6 +1,5 @@
-console.log("ColourApi.js running");
-
-define([ "app/Colour", "app/ColourWheel" ], function(colour, colourWheel) {
+define([ 'core', 'app/Colour', 'app/ColourWheel' ], function(core, colour,
+		colourWheel) {
 
 	var api = {
 		Colour : colour,
@@ -10,5 +9,3 @@ define([ "app/Colour", "app/ColourWheel" ], function(colour, colourWheel) {
 	return api;
 
 });
-
-console.log("ColourApi.js completed");

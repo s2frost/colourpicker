@@ -15,7 +15,8 @@
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	require.config({
 		paths : {
-			jquery : 'lib/jquery',
+			core: 'app/core',
+			jquery : 'lib/jquery',			// these are acting as aliases
 			knockout : 'lib/knockout',
 			domReady : 'lib/domReady'
 		}
@@ -24,7 +25,7 @@
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	// Invoice RequireJS to load ColourPickerViewModel
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	require([ 'app/Application', 'domReady!' ],
+	require(['app/Application', 'domReady!'],				// t
 			function(Application, document) {
 
 				var app = Application.getInstance(document);

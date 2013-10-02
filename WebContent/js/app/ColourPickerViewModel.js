@@ -1,15 +1,18 @@
-define(["knockout"],function(ko) {
+define([ 'core', 'knockout' ], function(core, ko) {
 
 	"use strict";
-	
+
 	var ColourPickerViewModel = function ColourPickerViewModel(spec) {
-		var self = this;
-		self.red = ko.observable(spec.red), self.green = ko
-				.observable(spec.green), self.blue = ko.observable(spec.blue),
-				self.hue = ko.observable(spec.hue), self.saturation = ko
-						.observable(spec.saturation), self.lightness = ko
-						.observable(spec.lightness);
-		return self;
+		this.red = ko.observable(spec.red);
+		this.green = ko.observable(spec.green);
+		this.blue = ko.observable(spec.blue);
+		this.hue = ko.observable(spec.hue);
+		this.saturation = ko.observable(spec.saturation);
+		this.lightness = ko.observable(spec.lightness);
+	};
+
+	ColourPickerViewModel.prototype.toString = function toString() {
+		return "ColourPickerViewModel";
 	};
 
 	return ColourPickerViewModel;

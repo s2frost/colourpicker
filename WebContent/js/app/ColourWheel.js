@@ -1,17 +1,15 @@
 define(
-		[ 'app/Colour' ],
-		function(colour) {
+		[ 'core', 'app/Colour' ],
+		function(core, colour) {
 
 			var ColourWheel = function ColourWheel(spec) {
-				var self = this;
 				var canvas = spec.canvas;
-				self.canvas = canvas;
-				self.context = spec.context || canvas.getContext('2d');
-				self.width = spec.width || self.canvas.width
+				this.canvas = canvas;
+				this.context = spec.context || canvas.getContext('2d');
+				this.width = spec.width || this.canvas.width
 						|| window.innerWidth;
-				self.height = spec.height || self.canvas.height
+				this.height = spec.height || this.canvas.height
 						|| window.innerHeight;
-				return self;
 			};
 
 			var render = function render(l, hoff) {
@@ -26,7 +24,7 @@ define(
 				var cx = width / 2, // the center point on the X axis
 				cy = height / 2, // the center point on the Y axis
 				radius = width / 2.3333; // a radius of half the width fills
-											// the canvas without clipping
+				// the canvas without clipping
 
 				var imageData, pixels;
 				var hue, sat;
@@ -51,7 +49,7 @@ define(
 						ry = y - cy;
 
 						d = rx * rx + ry * ry; // radius of the circle
-												// intersecting the point(x,y)
+						// intersecting the point(x,y)
 
 						// if the radius of the circle intersecting the point
 						// (x,y) is inside the radius of the the wheel, draw the
@@ -92,14 +90,14 @@ define(
 							f = hue - g;
 
 							u = brightness * (1 - sat); // fully lit at min
-														// saturation
+							// saturation
 							v = brightness * (1 - sat * f); // fully lit with
-															// increasing
-															// saturation
+							// increasing
+							// saturation
 							w = brightness * (1 - sat * (1 - f)); // fully lit
-																	// with
-																	// decreasing
-																	// saturation
+							// with
+							// decreasing
+							// saturation
 
 							// g is in the range 0 to 6
 
