@@ -18,7 +18,9 @@
 			core: 'app/core',
 			jquery : 'lib/jquery',			// these are acting as aliases
 			knockout : 'lib/knockout',
-			domReady : 'lib/domReady'
+			domReady : 'lib/domReady',
+			dojo : 'lib/dojo',
+			dijit : 'lib/dijit'
 		}
 	});
 

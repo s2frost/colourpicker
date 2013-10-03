@@ -1,4 +1,4 @@
-define([ 'core', 'app/ColourApi', 'app/Button' ], function(core, ColourApi, Button) {
+define([ 'core', 'knockout', 'app/ColourApi', 'app/Button', 'app/ColourPickerViewModel' ], function(core, ko, ColourApi, Button, ColourPickerViewModel) {
 
 	// Private Constructor
 	var Application = function App(spec) {
@@ -6,6 +6,8 @@ define([ 'core', 'app/ColourApi', 'app/Button' ], function(core, ColourApi, Butt
 		this.canvas = spec.canvas;
 		this.colourWheel = spec.colourWheel;
 		this.testButton = new Button({name:'Dave'});
+		this.colourPickerViewModel = new ColourPickerViewModel({});
+		this.colourPickerViewModel.colourWheel = this.colourWheel;
 	};
 	
 	var handle_Button_clicked = function(e) {
@@ -14,11 +16,15 @@ define([ 'core', 'app/ColourApi', 'app/Button' ], function(core, ColourApi, Butt
 
 	// Public Method
 	var run = function run() {
-		debugger;
-		var colourWheel = this.colourWheel;
-		colourWheel.render(0.5, 2);
-		this.testButton.events.on('clicked',handle_Button_clicked);
-		this.testButton.click();
+		
+		var document = this.document;
+		var viewModel = this.colourPickerViewModel;
+		var colourPickerDiv = document.getElementById(document);
+		
+		ko.applyBindings(viewModel,colourPickerDiv);
+		
+		viewModel.redraw();
+		
 	};
 	Application.prototype.run = run;
 

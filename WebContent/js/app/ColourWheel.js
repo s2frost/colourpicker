@@ -10,7 +10,48 @@ define(
 						|| window.innerWidth;
 				this.height = spec.height || this.canvas.height
 						|| window.innerHeight;
+				this.initialize();
 			};
+
+			var imageData, pixels;
+			var singlePixelImageData, singlePixel;
+
+			var getMousePos = function getMousePos(canvas, evt) {
+				var rect = canvas.getBoundingClientRect();
+				return {
+					x : evt.clientX - rect.left,
+					y : evt.clientY - rect.top
+				};
+			}
+
+			var initialize = function initialize() {
+				var that = this;
+				imageData = this.context.createImageData(this.width,
+						this.height);
+				pixels = imageData.data;
+
+				singlePixelImageData = this.context.createImageData(1, 1);
+				singlePixel = singlePixelImageData.data;
+				singlePixel[0] = 0;
+				singlePixel[1] = 0;
+				singlePixel[2] = 0;
+				singlePixel[3] = 255;
+
+				var canvas_onMouseMove = function canvas_onMouseMove(e) {
+					var pos = getMousePos(that.canvas, e);
+					that.onMouseMove(pos.x, pos.y);
+				};
+				this.canvas.onmousemove = canvas_onMouseMove;
+			};
+			ColourWheel.prototype.initialize = initialize;
+
+			var onMouseMove = function onMouseMove(x, y) {
+
+				var msg = '(' + x + ',' + y + ')';
+				this.context.putImageData(singlePixelImageData, x, y);
+				console.log(msg);
+			};
+			ColourWheel.prototype.onMouseMove = onMouseMove;
 
 			var render = function render(l, hoff) {
 
@@ -26,18 +67,11 @@ define(
 				radius = width / 2.3333; // a radius of half the width fills
 				// the canvas without clipping
 
-				var imageData, pixels;
 				var hue, sat;
 				var i = 0;
 				var x, y, rx, ry;
 				var d, f, g;
 				var u, v, w;
-
-				imageData = ctx.createImageData(width, height);
-
-				// also store the hsl for each pixel
-
-				pixels = imageData.data;
 
 				for (y = 0; y < height; y = y + 1) {
 					for (x = 0; x < width; x = x + 1, i = i + 4) {

@@ -16,11 +16,38 @@ CTRL+SHIFT+F -- Reformats text in HTML Editor
 	<div>
 		<h1>Colour Picker</h1>
 
-		<div>
-			<h2>Picker Appears Here</h2>
-			<canvas id="colourWheel" width="200" height="200"></canvas>
+		<div id="colourPicker" style="overflow: hidden; width: 400px;">
+			<!-- Colour Wheel -->
+			<div style="float: left;  width:200px; height:200px">
+				<canvas id="colourWheel" width="200" height="200" style="cursor:none; position:relative;"></canvas>
+				<svg id = "pointer" xmlns="http://www.w3.org/2000/svg" version="1.1"  viewbox="-1000 -1000 2000 2000" style="position:relative;top:-200px;">
+  					<polygon points="100,10 40,180 190,60 10,60 160,180" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd; left:0px;" />
+				</svg>
+			</div>
+			<!-- Controls -->
+			<div style="float: left; width:100; height:100">
+				<table>
+					<col />
+					<col />
+					<col />
+					<tr>
+						<td><span>Hue:</span></td>
+						<td><input type="text" data-bind='value: hue'></input></td>
+						<td><span>Slider</span></td>
+					</tr>
+					<tr>
+						<td><span>Sat:</span></td>
+						<td><input type="text" data-bind='value: saturation'></input></td>
+						<td><span>Slider</span></td>
+					</tr>
+					<tr>
+						<td><span>Lig:</span></td>
+						<td><input type="text" data-bind='value: lightness'></input></td>
+						<td><span>Slider</span></td>
+					</tr>
+				</table>
+			</div>
 		</div>
-
 		<div>
 			<h2>ToDo:</h2>
 			<p>The follwing items remain:</p>
