@@ -1,4 +1,4 @@
-define([ 'core', 'knockout', 'app/ColourApi', 'app/Button', 'app/ColourPickerViewModel' ], function(core, ko, ColourApi, Button, ColourPickerViewModel) {
+define([ 'core', 'knockout', 'app/ColourApi', 'app/Button', 'app/ColourPickerViewModel', 'dijit/Dialog'], function(core, ko, ColourApi, Button, ColourPickerViewModel) {
 
 	// Private Constructor
 	var Application = function App(spec) {

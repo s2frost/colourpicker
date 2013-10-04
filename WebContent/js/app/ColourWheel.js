@@ -1,6 +1,6 @@
 define(
 		[ 'core', 'app/Colour' ],
-		function(core, colour) {
+		function(core, Colour) {
 
 			var ColourWheel = function ColourWheel(spec) {
 				var canvas = spec.canvas;
@@ -24,7 +24,7 @@ define(
 				};
 			}
 
-			var initialize = function initialize() {
+			var initialize = ColourWheel.prototype.initialize = function initialize() {
 				var that = this;
 				imageData = this.context.createImageData(this.width,
 						this.height);
@@ -43,20 +43,35 @@ define(
 				};
 				this.canvas.onmousemove = canvas_onMouseMove;
 			};
-			ColourWheel.prototype.initialize = initialize;
 
-			var onMouseMove = function onMouseMove(x, y) {
+			var onMouseMove = ColourWheel.prototype.onMouseMove = function onMouseMove(
+					x, y) {
+				
+				var c = this.context.getImageData(x, y, 1, 1).data;
+				
+				var sample = {
+					r: c[0],
+					g: c[1],
+					b: c[2]
+				};
+				
+				this.sample = sample;
+				
+				if(typeof this.onSampleHover === 'function') {
+					this.onSampleHover(sample);
+				}
 
-				var msg = '(' + x + ',' + y + ')';
-				this.context.putImageData(singlePixelImageData, x, y);
-				console.log(msg);
 			};
-			ColourWheel.prototype.onMouseMove = onMouseMove;
+			
+			
+			
+			
 
-			var render = function render(l, hoff) {
-
-				var lightness = l === undefined ? 1 : l;
-				var hueOffset = hoff === undefined ? 0 : hoff;
+			var render = ColourWheel.prototype.render = function render(p_lightness, p_hue, p_satConst) {
+				
+				var satConst = p_satConst === undefined ? 1 : Math.abs(p_satConst);
+				var lightness = p_lightness === undefined ? 1 : Math.abs(p_lightness);
+				var hueOffset = p_hue === undefined ? 0 : Math.abs(p_hue);
 
 				var brightness = 255 * lightness;
 
@@ -117,7 +132,7 @@ define(
 							// The saturation is based on the distance of the
 							// point from the center relative to the radius
 							// its' fully desaturated at the center
-							sat = Math.sqrt(d) / radius;
+							sat = satConst * Math.sqrt(d) / radius;
 
 							g = Math.floor(hue);
 
@@ -142,14 +157,13 @@ define(
 							pixels[i + 2] = [ u, u, w, brightness, brightness,
 									v, u ][g]; // b
 							pixels[i + 3] = 255;
+							
 						}
 					}
 				}
 
 				ctx.putImageData(imageData, 0, 0);
 			};
-
-			ColourWheel.prototype.render = render;
 
 			return ColourWheel;
 

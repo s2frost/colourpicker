@@ -2,7 +2,7 @@
  * Javascript Picker Static Html Application
  * 
  */
-(function() {
+(function(window,document,undefined) {
 
 	var log = function(msg) {
 		console.log(msg);
@@ -29,10 +29,10 @@
 	// -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	require(['app/Application', 'domReady!'],				// t
 			function(Application, document) {
-
+		
 				var app = Application.getInstance(document);
 				app.run();
 
 			});
 
-}());
+}(window,document));

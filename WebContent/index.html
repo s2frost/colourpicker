@@ -13,48 +13,60 @@ CTRL+SHIFT+F -- Reformats text in HTML Editor
 <title>Colour Picker</title>
 </head>
 <body>
-	<div>
-		<h1>Colour Picker</h1>
 
-		<div id="colourPicker" style="overflow: hidden; width: 400px;">
-			<!-- Colour Wheel -->
-			<div style="float: left;  width:200px; height:200px">
-				<canvas id="colourWheel" width="200" height="200" style="cursor:none; position:relative;"></canvas>
-				<svg id = "pointer" xmlns="http://www.w3.org/2000/svg" version="1.1"  viewbox="-1000 -1000 2000 2000" style="position:relative;top:-200px;">
-  					<polygon points="100,10 40,180 190,60 10,60 160,180" style="fill:lime;stroke:purple;stroke-width:5;fill-rule:evenodd; left:0px;" />
-				</svg>
-			</div>
-			<!-- Controls -->
-			<div style="float: left; width:100; height:100">
-				<table>
-					<col />
-					<col />
-					<col />
-					<tr>
-						<td><span>Hue:</span></td>
-						<td><input type="text" data-bind='value: hue'></input></td>
-						<td><span>Slider</span></td>
-					</tr>
-					<tr>
-						<td><span>Sat:</span></td>
-						<td><input type="text" data-bind='value: saturation'></input></td>
-						<td><span>Slider</span></td>
-					</tr>
-					<tr>
-						<td><span>Lig:</span></td>
-						<td><input type="text" data-bind='value: lightness'></input></td>
-						<td><span>Slider</span></td>
-					</tr>
-				</table>
-			</div>
+	<div id="colourPicker" style="overflow: hidden; height:auto; width: 100%; position: relative;display:table;vertical-align:middle;">
+		<!-- Colour Wheel -->
+		<div
+			style="float: left;height:600px;">
+			<canvas data-bind="click: setSample" id="colourWheel" width="600" height="600"
+				style="position: relative;"></canvas>
 		</div>
-		<div>
-			<h2>ToDo:</h2>
-			<p>The follwing items remain:</p>
-			<ul>
-				<li>Colour Wheel</li>
-				<li>Viewmodel and Knockout Base Sliders</li>
-			</ul>
+		<!-- Controls -->
+		<div style="float: left;height:300px;position: relative;display:table-cell;vertical-align:middle;margin-left:30px;">
+			<table style="height:100%">
+				<col />
+				<col />
+				<col />
+				<tr>
+					<td><span>Hue:</span></td>
+					<td><input data-bind="value: hue" type="text" min="0" max="255"></td>
+					<td><input data-bind="value: hue" type="range" min="0" max="255"></td>
+				</tr>
+				<tr>
+					<td><span>Sat:</span></td>
+					<td><input data-bind="value: saturation" type="text" min="0" max="255"></td>
+					<td><input data-bind="value: saturation" type="range" min="0" max="255"></td>
+				</tr>
+				<tr>
+					<td><span>Lum:</span></td>
+					<td><input data-bind="value: lightness" type="text"	min="0" max="255"></td>
+					<td><input data-bind="value: lightness" type="range" min="0" max="255"></td>
+				
+				</tr>
+								<tr>
+					<td><span>Red:</span></td>
+					<td><input data-bind="value: red" type="text" min="0" max="255"></td>
+					<td><input data-bind="value: red" type="range" min="0" max="255"></td>
+				</tr>
+				<tr>
+					<td><span>Green:</span></td>
+					<td><input data-bind="value: green" type="text" min="0" max="255"></td>
+					<td><input data-bind="value: green" type="range" min="0" max="255"></td>
+				</tr>
+				<tr>
+					<td><span>Blue:</span></td>
+					<td><input data-bind="value: blue" type="text"	min="0" max="255"></td>
+					<td><input data-bind="value: blue" type="range" min="0" max="255"></td>
+				</tr>
+				<tr>
+					<td><span>RGB:</span></td>
+					<td colspan="2"><input data-bind="value: rgb" type="text"></td>
+				</tr>
+				<tr>
+					<td>Swatch:</td>
+					<td colspan="2" ><div data-bind="style: { border: 'solid 1px', backgroundColor: rgb() }">&nbsp;</div></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </body>
